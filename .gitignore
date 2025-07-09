@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+
+runs
+training/football-players-detection-1
+*.pt
+
+.env
+
+.venv/
