@@ -51,8 +51,42 @@ class Tracker:
             # Covert to supervision Detection format
             detection_supervision = sv.Detections.from_ultralytics(detection)
 
+
             # Convert goalkeeper objects to player objects
             for object_ind , class_id in enumerate(detection_supervision.class_id):
                 if cls_names[class_id] == "goalkeeper":
                     detection_supervision.class_id[object_ind] = cls_names_inv["player"]
 
+            # Tracker object added to each detection
+            detection_with_tracks = self.tracker.update_with_detections(detection_supervision)
+
+            tracks["players"].append({})
+            tracks["referees"].append({})
+            tracks["ball"].append({})
+
+            for frame_detection in detection_with_tracks:
+                bbox = frame_detection[0].tolist() # bounding box
+                cls_id = frame_detection[3] # class id
+                track_id = frame_detection[4]
+
+                if cls_id == cls_names_inv['player']:
+                    tracks["players"][frame_num][track_id] = {"bbox":bbox}
+                
+                if cls_id == cls_names_inv['referee']:
+                    tracks["referees"][frame_num][track_id] = {"bbox":bbox}
+            
+            # The ball has been filtered out of the detection_with_tracks. 
+            # A second loop is therefore required using the original detection_supervision. 
+            for frame_detection in detection_supervision:
+                bbox = frame_detection[0].tolist() # bounding box
+                cls_id = frame_detection[3] # class id
+
+                if cls_id == cls_names_inv['ball']:
+                    track_id = 1  # The ball is not tracked across frames, so we assign a fixed tracker ID of 1. 
+                    tracks["ball"][frame_num][track_id] = {"bbox":bbox} # This works because only one ball detection is expected per frame.
+                    
+        if stub_path is not None:
+            with open(stub_path,'wb') as f:
+                pickle.dump(tracks,f)
+
+        return tracks
