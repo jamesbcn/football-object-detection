@@ -45,12 +45,12 @@ def main():
             tracks['players'][frame_num][assigned_player]['has_ball'] = True
             team_ball_control.append(tracks['players'][frame_num][assigned_player]['team'])
         else:
-            team_ball_control.append(team_ball_control[-1])
+            team_ball_control.append(team_ball_control[-1]) # If no player has the ball, keep the last team that had the ball.
     team_ball_control= np.array(team_ball_control)
     
-    # Draw output 
+    # Draw output  
     ## Draw object Tracks
-    output_video_frames = tracker.draw_annotations(video_frames, tracks)
+    output_video_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
 
     # Save video
     save_video(output_video_frames, 'output_videos/output_video.avi')

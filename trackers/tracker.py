@@ -186,14 +186,15 @@ class Tracker:
         return frame
 
     def draw_team_ball_control(self,frame,frame_num,team_ball_control):
-        # Draw a semi-transparent rectaggle 
+        # Draw a semi-transparent rectangle 
         overlay = frame.copy()
         cv2.rectangle(overlay, (1350, 850), (1900,970), (255,255,255), -1 )
         alpha = 0.4
         cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
         team_ball_control_till_frame = team_ball_control[:frame_num+1]
-        # Get the number of time each team had ball control
+        # Get the number of times each team had ball control by filtering the team_ball_control array 
+        # and then counting the number of frames for each team using the shape attribute.
         team_1_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==1].shape[0]
         team_2_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
         team_1 = team_1_num_frames/(team_1_num_frames+team_2_num_frames)
@@ -204,7 +205,7 @@ class Tracker:
 
         return frame
 
-    def draw_annotations(self,video_frames, tracks):
+    def draw_annotations(self,video_frames, tracks, team_ball_control):
         output_video_frames= []
         for frame_num, frame in enumerate(video_frames):
             frame = frame.copy()
@@ -230,8 +231,8 @@ class Tracker:
                 frame = self.draw_traingle(frame, ball["bbox"],(0,255,0))
 
 
-            # # Draw Team Ball Control
-            # frame = self.draw_team_ball_control(frame, frame_num, team_ball_control)
+            # Draw Team Ball Control
+            frame = self.draw_team_ball_control(frame, frame_num, team_ball_control)
 
             output_video_frames.append(frame)
 
