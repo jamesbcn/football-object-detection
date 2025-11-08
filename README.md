@@ -52,7 +52,7 @@ This project was completed as part of an object detection course.
 2. Create and activate a virtual environment (optional)
 
    ```bash
-   python -m venv venv
+   python -m venv .venv
    source venv/bin/activate      # On macOS/Linux
    .venv\Scripts\activate         # On Windows
    ```
