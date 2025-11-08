@@ -1,5 +1,5 @@
 
-# ⚽ Football Match Object Detection
+# Football Match Object Detection
 
 ![Final Output Screenshot](https://github.com/jamesbcn/football-object-detection/blob/main/screenshot.png)
 
@@ -11,7 +11,7 @@ This project was completed as part of an object detection course.
 
 ---
 
-## 🔍 Features
+## Features
 
 - **Player and Ball Detection**: Using YOLOv5 to detect all players and the ball in each frame.
 - **Tracking Across Frames**: Assigns consistent IDs to players and the ball to maintain tracking over time.
@@ -23,14 +23,14 @@ This project was completed as part of an object detection course.
 
 ---
 
-## 📹 Sample Input & Output
+## Sample Input & Output
 
-- 🔗 [Sample Input Video](https://drive.google.com/file/d/1uf2J619om7qdJTWUVufbi9J7l7loluus/view?usp=sharing)  
-- 🎥 [Final Processed Output Video](https://drive.google.com/file/d/1Phz1a9tf0buqNZhtOXROZeccWNmKoY9R/view?usp=sharing)
+- [Sample Input Video](https://drive.google.com/file/d/1uf2J619om7qdJTWUVufbi9J7l7loluus/view?usp=sharing)  
+- [Final Processed Output Video](https://drive.google.com/file/d/1Phz1a9tf0buqNZhtOXROZeccWNmKoY9R/view?usp=sharing)
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Language**: Python
 - **Computer Vision**: YOLOv5, OpenCV
@@ -40,7 +40,7 @@ This project was completed as part of an object detection course.
 
 ---
 
-## 🚀 Installation
+## Installation
 
 1. Clone the repository:
 
@@ -54,7 +54,7 @@ This project was completed as part of an object detection course.
    ```bash
    python -m venv venv
    source venv/bin/activate      # On macOS/Linux
-   venv\Scripts\activate         # On Windows
+   .venv\Scripts\activate         # On Windows
    ```
 
 3. Install dependencies:
@@ -72,7 +72,7 @@ This project was completed as part of an object detection course.
 
 ---
 
-## 🌟 Future Improvements
+## Future Improvements
 
 1. **Goalkeeper Detection Enhancement**  
    Improve robustness when the goalkeeper's jersey colour closely matches the opposing team’s outfield players.
@@ -85,7 +85,7 @@ This project was completed as part of an object detection course.
 
 ---
 
-## 🧠 What I Learned
+## What I Learned
 
 - Advanced object tracking using YOLOv5
 - Real-world speed estimation from pixel-level data
